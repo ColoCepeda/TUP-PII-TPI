@@ -20,7 +20,23 @@ def registrar_nuevo_libro():
     return None
 
 def eliminar_ejemplar_libro():
-    #completar
+    titulo_a_eliminar = input("Ingrese el título del libro del cual desea eliminar un ejemplar: ") 
+    for libro in libros:
+        if libro["titulo"] == titulo_a_eliminar:
+            confirmacion = input(f"¿Está seguro que desea eliminar un ejemplar de '{titulo_a_eliminar}'? (S/N): ").strip().upper()
+            
+            if confirmacion == 'S':
+                if libro['cant_ej_ad'] > 0:
+                    libro['cant_ej_ad'] -= 1  # Decrease available copies
+                    print(f"Se eliminó un ejemplar de '{titulo_a_eliminar}' con éxito.")
+                else:
+                    print(f"No hay ejemplares disponibles de '{titulo_a_eliminar}' para eliminar.")
+                return None
+            else:
+                print("Eliminación de ejemplar cancelada.")
+                return None
+    
+    print(f"El libro '{titulo_a_eliminar}' no existe en la biblioteca.")
     return None
 
 def prestar_ejemplar_libro():
@@ -50,8 +66,4 @@ def devolver_ejemplar_libro():
                 print("No existen ejemplares prestados para el libro ingresado.")
                 return None
     print("El libro no existe en la biblioteca")
-    return None
-
-def nuevo_libro():
-    #completar
     return None

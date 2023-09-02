@@ -29,7 +29,7 @@ while respuesta != "salir":
             biblio.registrar_nuevo_libro()
             print()
         elif int(opt) == 4:
-            #completar
+            biblio.eliminar_ejemplar_libro()
             print()
         elif int(opt) == 5:
             #completar
