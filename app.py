@@ -26,6 +26,8 @@ while respuesta != "salir":
             #completar
             print()
         elif int(opt) == 3:
+            import bibloteca as biblio
+            biblio.registrar_nuevo_libro()
             #completar
             print()
         elif int(opt) == 4:

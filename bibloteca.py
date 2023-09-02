@@ -14,7 +14,9 @@ def ejemplares_prestados():
 
 def registrar_nuevo_libro():
     nuevo_libro = l.nuevo_libro()
-    #completar
+    libros.append(nuevo_libro)
+    print(libros)
+    print(nuevo_libro)   
     return None
 
 def eliminar_ejemplar_libro():
