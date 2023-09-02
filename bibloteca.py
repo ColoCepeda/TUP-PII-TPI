@@ -39,7 +39,17 @@ def prestar_ejemplar_libro():
     return None
 
 def devolver_ejemplar_libro():
-    #completar
+    libro_a_devolver = input("Ingrese el nombre del libro que quiere devolver: ")
+    for libro in libros:
+        if libro["titulo"] == libro_a_devolver:
+            if libro["cant_ej_pr"] > 0:
+                print("Se ha gestionado la devolución correctamente.")
+                libro["cant_ej_pr"] -= 1
+                return None
+            else:
+                print("No existen ejemplares prestados para el libro ingresado.")
+                return None
+    print("El libro no existe en la biblioteca")
     return None
 
 def nuevo_libro():

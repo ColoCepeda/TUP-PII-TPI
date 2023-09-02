@@ -11,6 +11,7 @@ def nuevo_libro():
     cant_ej_pr = int(input("Ingrese la cantidad de ejemplares prestados: "))
     titulo = input("Ingrese el título del libro :")
     autor = input("Ingrese el autor del libro: ")
+    print("El libro agregado se titula " + titulo + ", del autor " + ", el código es " + cod + ". hay " + " ejemplares disponibles y " + " ejemplares prestados")
     libro = {'cod': cod, 'cant_ej_ad': cant_ej_ad, 'cant_ej_pr': cant_ej_pr, "titulo": titulo, "autor": autor }
     return libro
 
