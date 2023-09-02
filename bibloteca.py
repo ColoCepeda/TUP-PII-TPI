@@ -24,7 +24,20 @@ def eliminar_ejemplar_libro():
     return None
 
 def prestar_ejemplar_libro():
-    #completar
+    libro = 0
+    libro_a_prestar = input("Ingrese el nombre del libro que quiere sacar a prestamo: ")
+    for libro in libros:
+        if libro["titulo"] == libro_a_prestar:
+            print("El libro existe")
+            if libro['cant_ej_pr'] < libro['cant_ej_ad']:
+                libro['cant_ej_pr'] += 1
+                print("Se realizo el prestamo de con éxito.")
+            else:
+                print("El libro no tiene ejemplares disponibles para prestar. ")
+        else:
+            print("El libro no existe en la biblioteca. ")
+        break
+    
     return None
 
 def devolver_ejemplar_libro():
