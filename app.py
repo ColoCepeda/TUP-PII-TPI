@@ -1,14 +1,13 @@
 # Trabajo Práctico I - Programación II
-
-
 import os
 import bibloteca as biblio
+
 print("Bienvenido!")
 respuesta = ''
 
 def menu():
     print("1 - Mostrar libros")
-    print("3 - Gestionar Prestamo")
+    print("2 - Gestionar Prestamo")
     print("3 - Gestionar Devolucion")
     print("4 - Registrar nuevo libro")
     print("5 - Eliminar ejemplar")

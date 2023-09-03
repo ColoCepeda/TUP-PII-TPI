@@ -52,18 +52,33 @@ def eliminar_ejemplar_libro():
     return None
 
 def prestar_ejemplar_libro():
-    libro_a_prestar = input("Ingrese el nombre del libro que quiere sacar a prestamo: ")
+    libro_a_prestar = input("Ingrese el nombre del libro que quiere sacar a préstamo: ")
+    libro_existe = False  
+    
     for libro in libros:
         if libro["titulo"] == libro_a_prestar:
             print("El libro existe")
+            libro_existe = True  
             if libro['cant_ej_pr'] < libro['cant_ej_ad']:
                 libro['cant_ej_pr'] += 1
-                print("Se realizo el prestamo de con éxito.")
+                print("Se realizó el préstamo con éxito.")
                 return None
             else:
-                print("El libro no tiene ejemplares disponibles para prestar. ")
+                print("El libro no tiene ejemplares disponibles para prestar.")
                 return None
-    print("El libro no existe en la biblioteca. ")
+
+    if not libro_existe:
+        while True: 
+            confirmacion = input("El libro no existe en la biblioteca. ¿Desea agregarlo? (S/N)").strip().upper()
+            if confirmacion == 'S':
+                registrar_nuevo_libro()
+                break
+            elif confirmacion == 'N':
+                print()
+                break
+            else: 
+                print("Ingrese una opción válida")
+                
     return None
 
 def devolver_ejemplar_libro():
