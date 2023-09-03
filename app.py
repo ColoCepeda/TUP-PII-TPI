@@ -7,12 +7,13 @@ print("Bienvenido!")
 respuesta = ''
 
 def menu():
-    print("1 - Gestionar Prestamo")
-    print("2 - Gestionar Devolucion")
-    print("3 - Registrar nuevo libro")
-    print("4 - Eliminar ejemplar")
-    print("5 - Mostrar ejemplares prestados")
-    print("6 - Salir")
+    print("1 - Mostrar libros")
+    print("3 - Gestionar Prestamo")
+    print("3 - Gestionar Devolucion")
+    print("4 - Registrar nuevo libro")
+    print("5 - Eliminar ejemplar")
+    print("6 - Mostrar ejemplares prestados")
+    print("7 - Salir")
 
 while respuesta != "salir":
     menu()
@@ -20,26 +21,29 @@ while respuesta != "salir":
     os.system ("cls") #Limpiar pantalla
     if opt.isnumeric():
         if int(opt) == 1:
-            biblio.prestar_ejemplar_libro()
+            biblio.mostrar_libros()
             print()
         elif int(opt) == 2:
-            biblio.devolver_ejemplar_libro()
+            biblio.prestar_ejemplar_libro()
             print()
         elif int(opt) == 3:
-            biblio.registrar_nuevo_libro()
+            biblio.devolver_ejemplar_libro()
             print()
         elif int(opt) == 4:
-            biblio.eliminar_ejemplar_libro()
+            biblio.registrar_nuevo_libro()
             print()
         elif int(opt) == 5:
-            biblio.ejemplares_prestados()
+            biblio.eliminar_ejemplar_libro()
             print()
         elif int(opt) == 6:
+            biblio.ejemplares_prestados()
+            print()
+        elif int(opt) == 7:
             respuesta = "salir"
         else: print("Ingrese una opción válida")
     else: 
         print("Ingrese una opción numérica")
     
-    input("Presione cualquier tecla para continuar....") # Pausa
+    biblio.pause()
 
 print("Hasta luego!.")

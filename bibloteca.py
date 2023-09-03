@@ -1,4 +1,5 @@
 import libro as l
+import msvcrt
 
 # Crear una lista vacía para almacenar los libros
 libros = []
@@ -7,6 +8,12 @@ libros = []
 libros.append(l.libro1)
 libros.append(l.libro2)
 libros.append(l.libro3)
+
+def mostrar_libros():
+    print("Lista de libros")
+    for libro in libros:
+        print("Titulo: " + libro['titulo'])
+    return None
 
 def ejemplares_prestados():
     print("Ejemplares prestados de cada libro: ")
@@ -72,3 +79,7 @@ def devolver_ejemplar_libro():
                 return None
     print("El libro no existe en la biblioteca")
     return None
+# Espera hasta que se presione cualquier tecla
+def pause():
+    print("Presione cualquier tecla para continuar...")
+    msvcrt.getch().strip()
