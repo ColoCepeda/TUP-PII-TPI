@@ -39,10 +39,9 @@ while respuesta != "salir":
             print()
         elif int(opt) == 7:
             respuesta = "salir"
+            print("Hasta luego!.")
         else: print("Ingrese una opción válida")
     else: 
         print("Ingrese una opción numérica")
     
     biblio.pause()
-
-print("Hasta luego!.")
