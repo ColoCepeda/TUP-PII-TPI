@@ -25,8 +25,14 @@ def ejemplares_prestados():
             print("El libro " + libro['titulo'] + " no tiene ejemplares prestados.")
     return None
 
-def registrar_nuevo_libro():#no mostrar el diccionario, empezar por el titulo, avisar si existe, confirmar
-    nuevo_libro = l.nuevo_libro()
+def registrar_nuevo_libro():
+    titulo = input("Ingrese el título del libro :")
+    for libro in libros:
+        if libro["titulo"] == titulo:
+            print("El libro ya existe")
+            return None
+
+    nuevo_libro = l.nuevo_libro(titulo)
     if nuevo_libro != None:libros.append(nuevo_libro)
     return None
 
@@ -70,7 +76,8 @@ def prestar_ejemplar_libro():
         while True: 
             confirmacion = input("El libro no existe en la biblioteca. ¿Desea agregarlo? (S/N)").strip().upper()
             if confirmacion == 'S':
-                registrar_nuevo_libro()
+                nuevo_libro = l.nuevo_libro(libro_a_prestar)
+                if nuevo_libro != None:libros.append(nuevo_libro)
                 break
             elif confirmacion == 'N':
                 print()
@@ -98,7 +105,8 @@ def devolver_ejemplar_libro():
         while True: 
             confirmacion = input("El libro no existe en la biblioteca. ¿Desea agregarlo? (S/N)").strip().upper()
             if confirmacion == 'S':
-                registrar_nuevo_libro()
+                nuevo_libro = l.nuevo_libro(libro_a_devolver)
+                if nuevo_libro != None:libros.append(nuevo_libro)
                 break
             elif confirmacion == 'N':
                 print()
