@@ -11,9 +11,15 @@ def nuevo_libro():
     cant_ej_pr = int(input("Ingrese la cantidad de ejemplares prestados: "))
     titulo = input("Ingrese el título del libro :")
     autor = input("Ingrese el autor del libro: ")
-    print("El libro agregado se titula " + titulo + ", del autor " + ", el código es " + cod + ". hay " + " ejemplares disponibles y " + " ejemplares prestados")
-    libro = {'cod': cod, 'cant_ej_ad': cant_ej_ad, 'cant_ej_pr': cant_ej_pr, "titulo": titulo, "autor": autor }
-    return libro
+    print("El libro que desea agregar se titula " + titulo + ", del autor " + autor + ", el código es " + cod)
+    confirmacion = input(f"¿Desea confirmar el registro? (S/N): ").strip().upper()
+    if confirmacion == 'S':
+        libro = {'cod': cod, 'cant_ej_ad': cant_ej_ad, 'cant_ej_pr': cant_ej_pr, "titulo": titulo, "autor": autor }
+        print("Operación realizada exitosamente.")
+        return libro
+    else:
+        print("La operación ha sido cancelada")
+        return None
 
 def generar_codigo():
     

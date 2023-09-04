@@ -9,10 +9,11 @@ libros.append(l.libro1)
 libros.append(l.libro2)
 libros.append(l.libro3)
 
+#Poner un limpiar pantalla y poner los disponibles
 def mostrar_libros():
     print("Lista de libros")
     for libro in libros:
-        print("Titulo: " + libro['titulo'])
+        print("Titulo: " + libro['titulo'] + " - Disponibles: " + str(libro["cant_ej_ad"] - libro["cant_ej_pr"]) + ".")
     return None
 
 def ejemplares_prestados():
@@ -24,14 +25,12 @@ def ejemplares_prestados():
             print("El libro " + libro['titulo'] + " no tiene ejemplares prestados.")
     return None
 
-def registrar_nuevo_libro():
+def registrar_nuevo_libro():#no mostrar el diccionario, empezar por el titulo, avisar si existe, confirmar
     nuevo_libro = l.nuevo_libro()
-    libros.append(nuevo_libro)
-    print(libros)
-    print(nuevo_libro)   
+    if nuevo_libro != None:libros.append(nuevo_libro)
     return None
 
-def eliminar_ejemplar_libro():
+def eliminar_ejemplar_libro():#corroborar si tiene ejemplares disp, si queda en 0 borrar el libro¿?
     titulo_a_eliminar = input("Ingrese el título del libro del cual desea eliminar un ejemplar: ") 
     for libro in libros:
         if libro["titulo"] == titulo_a_eliminar:
@@ -57,7 +56,7 @@ def prestar_ejemplar_libro():
     
     for libro in libros:
         if libro["titulo"] == libro_a_prestar:
-            print("El libro existe")
+            #print("El libro existe")
             libro_existe = True  
             if libro['cant_ej_pr'] < libro['cant_ej_ad']:
                 libro['cant_ej_pr'] += 1
@@ -83,8 +82,10 @@ def prestar_ejemplar_libro():
 
 def devolver_ejemplar_libro():
     libro_a_devolver = input("Ingrese el nombre del libro que quiere devolver: ")
+    libro_existe = False
     for libro in libros:
         if libro["titulo"] == libro_a_devolver:
+            libro_existe = True
             if libro["cant_ej_pr"] > 0:
                 print("Se ha gestionado la devolución correctamente.")
                 libro["cant_ej_pr"] -= 1
@@ -92,7 +93,19 @@ def devolver_ejemplar_libro():
             else:
                 print("No existen ejemplares prestados para el libro ingresado.")
                 return None
-    print("El libro no existe en la biblioteca")
+
+    if not libro_existe:
+        while True: 
+            confirmacion = input("El libro no existe en la biblioteca. ¿Desea agregarlo? (S/N)").strip().upper()
+            if confirmacion == 'S':
+                registrar_nuevo_libro()
+                break
+            elif confirmacion == 'N':
+                print()
+                break
+            else: 
+                print("Ingrese una opción válida")
+                
     return None
 # Espera hasta que se presione cualquier tecla
 def pause():

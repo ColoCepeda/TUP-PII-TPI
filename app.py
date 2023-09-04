@@ -32,7 +32,7 @@ while respuesta != "salir":
             biblio.registrar_nuevo_libro()
             print()
         elif int(opt) == 5:
-            biblio.eliminar_ejemplar_libro()
+            biblio.eliminar_ejemplar_libro() #agregar funcion de agregar ejemplares?
             print()
         elif int(opt) == 6:
             biblio.ejemplares_prestados()
