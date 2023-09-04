@@ -36,14 +36,14 @@ def registrar_nuevo_libro():
     if nuevo_libro != None:libros.append(nuevo_libro)
     return None
 
-def eliminar_ejemplar_libro():#corroborar si tiene ejemplares disp, si queda en 0 borrar el libro¿?
+def eliminar_ejemplar_libro():#corrobora que si tiene ejemplares disp y no es igual que los prestados lo elimina
     titulo_a_eliminar = input("Ingrese el título del libro del cual desea eliminar un ejemplar: ") 
     for libro in libros:
         if libro["titulo"] == titulo_a_eliminar:
             confirmacion = input(f"¿Está seguro que desea eliminar un ejemplar de '{titulo_a_eliminar}'? (S/N): ").strip().upper()
             
             if confirmacion == 'S':
-                if libro['cant_ej_ad'] > 0:
+                if libro['cant_ej_ad'] > 0 and libro['cant_ej_ad'] != libro['cant_ej_pr']:
                     libro['cant_ej_ad'] -= 1  
                     print(f"Se eliminó un ejemplar de '{titulo_a_eliminar}' con éxito.")
                 else:
