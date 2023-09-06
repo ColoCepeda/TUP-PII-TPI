@@ -9,8 +9,16 @@ def nuevo_libro(titulo):
     
     cod = generar_codigo()
     while True:
-        cant_ej_ad = int(input("Ingrese la cantidad de ejemplares adquiridos: "))
-        cant_ej_pr = int(input("Ingrese la cantidad de ejemplares prestados: "))
+        try:
+            cant_ej_ad = int(input("Ingrese la cantidad de ejemplares adquiridos: "))
+        except ValueError:
+            print("Debe ingresar un valor numérico")
+            continue
+        try:
+            cant_ej_pr = int(input("Ingrese la cantidad de ejemplares prestados: "))
+        except ValueError:
+            print("Debe ingresar un valor numérico")
+            continue
         if cant_ej_ad < cant_ej_pr:
             print("La cantidad de unidades prestadas no puede ser mayor a los ejemplares adquiridos, intente nuevamente")
         else:
