@@ -56,6 +56,23 @@ def eliminar_ejemplar_libro():#corrobora que si tiene ejemplares disp y no es ig
     print(f"El libro '{titulo_a_eliminar}' no existe en la biblioteca.")
     return None
 
+def agregar_ejemplar():
+    titulo_a_agregar = input("Ingrese el título del libro del cual desea agregar un ejemplar: ") 
+    for libro in libros:
+        if libro["titulo"] == titulo_a_agregar:
+            confirmacion = input(f"¿Está seguro que desea agregar un ejemplar de '{titulo_a_agregar}'? (S/N): ").strip().upper()
+            
+            if confirmacion == 'S':
+                libro['cant_ej_ad'] += 1  
+                print(f"Se agregó un ejemplar de '{titulo_a_agregar}' con éxito.")
+            return None
+        else:
+            print("Agregar ejemplar cancelado.")
+            return None
+        
+    print(f"El libro '{titulo_a_agregar}' no existe en la biblioteca.")
+    return None
+
 def prestar_ejemplar_libro():
     libro_a_prestar = input("Ingrese el nombre del libro que quiere sacar a préstamo: ")
     libro_existe = False  

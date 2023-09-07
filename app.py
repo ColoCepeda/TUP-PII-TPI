@@ -11,8 +11,9 @@ def menu():
     print("3 - Gestionar Devolucion")
     print("4 - Registrar nuevo libro")
     print("5 - Eliminar ejemplar")
-    print("6 - Mostrar ejemplares prestados")
-    print("7 - Salir")
+    print("6 - Agregar ejemplar")
+    print("7 - Mostrar ejemplares prestados")
+    print("8 - Salir")
 
 while respuesta != "salir":
     menu()
@@ -32,12 +33,15 @@ while respuesta != "salir":
             biblio.registrar_nuevo_libro()
             print()
         elif int(opt) == 5:
-            biblio.eliminar_ejemplar_libro() #agregar funcion de agregar ejemplares?
+            biblio.eliminar_ejemplar_libro()
             print()
         elif int(opt) == 6:
-            biblio.ejemplares_prestados()
+            biblio.agregar_ejemplar()
             print()
         elif int(opt) == 7:
+            biblio.ejemplares_prestados()
+            print()
+        elif int(opt) == 8:
             respuesta = "salir"
             print("Hasta luego!.")
         else: print("Ingrese una opción válida")
