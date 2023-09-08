@@ -1,5 +1,5 @@
 import libro as l
-import msvcrt
+import msvcrt               # Librería para poder usar getch()
 
 # Crear una lista vacía para almacenar los libros
 libros = []
@@ -9,34 +9,33 @@ libros.append(l.libro1)
 libros.append(l.libro2)
 libros.append(l.libro3)
 
-#Poner un limpiar pantalla y poner los disponibles
-def mostrar_libros():
-    print("Lista de libros")
-    for libro in libros:
-        print("Titulo: " + libro['titulo'] + " - Disponibles: " + str(libro["cant_ej_ad"] - libro["cant_ej_pr"]) + ".")
+def mostrar_libros():                                                                                                           # Función para mostrar
+    print("Lista de libros")                                                                                                    # en pantalla una lista
+    for libro in libros:                                                                                                        # de los libros mediante un for
+        print("Titulo: " + libro['titulo'] + " - Disponibles: " + str(libro["cant_ej_ad"] - libro["cant_ej_pr"]) + ".")         # para recorrer la lista
     return None
 
 def ejemplares_prestados():
-    print("Ejemplares prestados de cada libro: ")
-    for libro in libros:
-        if libro['cant_ej_pr'] > 0:
-            print("La cantidad de ejemplares prestados del libro: " + libro['titulo'] + ", es de " + str(libro["cant_ej_pr"])+".")
-        else:
-            print("El libro " + libro['titulo'] + " no tiene ejemplares prestados.")
+    print("Ejemplares prestados de cada libro: ")                                                                                       
+    for libro in libros:                                                                                                                
+        if libro['cant_ej_pr'] > 0:                                                                                                                                                                          
+            print("La cantidad de ejemplares prestados del libro: " + libro['titulo'] + ", es de " + str(libro["cant_ej_pr"])+".")      # Recorremos la lista y mostramos la cantidad
+        else:                                                                                                                           # de libros prestados, o decimos que no tiene ejemplares                                             
+            print("El libro " + libro['titulo'] + " no tiene ejemplares prestados.")                                                    # prestados en el caso de que sea cero.                             
     return None
 
 def registrar_nuevo_libro():
     titulo = input("Ingrese el título del libro :")
     for libro in libros:
-        if libro["titulo"] == titulo:
-            print("El libro ya existe")
-            return None
+        if libro["titulo"] == titulo:                                                           # Corroboramos que no exista un libro 
+            print("El libro ya existe")                                                         # con el titulo que se ingresa
+            return None                                                                         # Finalizamos la función si ya existe
 
-    nuevo_libro = l.nuevo_libro(titulo)
-    if nuevo_libro != None:libros.append(nuevo_libro)
-    return None
+    nuevo_libro = l.nuevo_libro(titulo)                                                         # Llamamos la función nuevo.libro, si retorna 
+    if nuevo_libro != None:libros.append(nuevo_libro)                                           # None es porque la operación fue cancelada
+    return None                                                                                 
 
-def eliminar_ejemplar_libro():#corrobora que si tiene ejemplares disp y no es igual que los prestados lo elimina
+def eliminar_ejemplar_libro():                                                                          # Corrobora que si tiene ejemplares disp y no es igual que los prestados lo elimina
     titulo_a_eliminar = input("Ingrese el título del libro del cual desea eliminar un ejemplar: ") 
     for libro in libros:
         if libro["titulo"] == titulo_a_eliminar:
@@ -60,8 +59,8 @@ def agregar_ejemplar():
     titulo_a_agregar = input("Ingrese el título del libro del cual desea agregar un ejemplar: ") 
     for libro in libros:
         if libro["titulo"] == titulo_a_agregar:
-            confirmacion = input(f"¿Está seguro que desea agregar un ejemplar de '{titulo_a_agregar}'? (S/N): ").strip().upper()
-            
+            confirmacion = input(f"¿Está seguro que desea agregar un ejemplar de '{titulo_a_agregar}'? (S/N): ").strip().upper()   # Usamos strip para eliminar los espacios de más en el input
+                                                                                                                                   # Usamos el upper para devolver lo ingresado en mayúsculas
             if confirmacion == 'S':
                 libro['cant_ej_ad'] += 1  
                 print(f"Se agregó un ejemplar de '{titulo_a_agregar}' con éxito.")
@@ -79,10 +78,9 @@ def prestar_ejemplar_libro():
     
     for libro in libros:
         if libro["titulo"] == libro_a_prestar:
-            #print("El libro existe")
             libro_existe = True  
-            if libro['cant_ej_pr'] < libro['cant_ej_ad']:
-                libro['cant_ej_pr'] += 1
+            if libro['cant_ej_pr'] < libro['cant_ej_ad']:                                   # Si el libro es encontrado, chequeamos que tenga ejemplares disponibles
+                libro['cant_ej_pr'] += 1                                                    # y sumamos uno a los ejemplares prestados
                 print("Se realizó el préstamo con éxito.")
                 return None
             else:
@@ -93,9 +91,9 @@ def prestar_ejemplar_libro():
         while True: 
             confirmacion = input("El libro no existe en la biblioteca. ¿Desea agregarlo? (S/N)").strip().upper()
             if confirmacion == 'S':
-                nuevo_libro = l.nuevo_libro(libro_a_prestar)
-                if nuevo_libro != None:libros.append(nuevo_libro)
-                break
+                nuevo_libro = l.nuevo_libro(libro_a_prestar)                                        # Si el libro no existe preguntamos al usuario si desea agregarlo
+                if nuevo_libro != None:libros.append(nuevo_libro)                                   # Usamos while True como bandera y si el usuario ingresa una opción válida
+                break                                                                               # terminamos el bucle mediante el break
             elif confirmacion == 'N':
                 print()
                 break
@@ -104,8 +102,8 @@ def prestar_ejemplar_libro():
                 
     return None
 
-def devolver_ejemplar_libro():
-    libro_a_devolver = input("Ingrese el nombre del libro que quiere devolver: ")
+def devolver_ejemplar_libro():                                                                          # Utilizamos la misma lógica que para el préstamo de libros
+    libro_a_devolver = input("Ingrese el nombre del libro que quiere devolver: ")                       # pero restando 1 en vez de sumarlo
     libro_existe = False
     for libro in libros:
         if libro["titulo"] == libro_a_devolver:
@@ -135,4 +133,4 @@ def devolver_ejemplar_libro():
 # Espera hasta que se presione cualquier tecla
 def pause():
     print("Presione cualquier tecla para continuar...")
-    msvcrt.getch().strip()
+    msvcrt.getch().strip()                                      # Usamos el getch para esperar por un caracter que ingrese el usuario
